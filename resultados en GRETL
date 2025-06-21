@@ -1,0 +1,264 @@
+versión de Gretl 2025b
+Sesión actual: 2025-06-21 00:01
+
+# =========================================================
+#      Simulación Monte Carlo (10 repeticiones controladas)
+#      Modelo: y = α + β·x + u  con generación exacta
+# =========================================================
+? nulldata 100
+periodicidad: 1, máx. obs: 100
+rango de observaciones: 1 a 100
+? setobs 1 1 --time-series
+Rango de datos completo: 1 - 100 (n = 100)
+
+# Parámetros poblacionales
+? scalar R = 10
+Se ha generado el escalar R = 10
+? scalar N = 100
+Se ha generado el escalar N = 100
+? scalar mu_x = 20
+Se ha generado el escalar mu_x = 20
+? scalar sigma_x = 15
+Se ha generado el escalar sigma_x = 15
+? scalar alpha = 5
+Se ha generado el escalar alpha = 5
+? scalar beta  = 2
+Se ha generado el escalar beta = 2
+? scalar sigma_e = 10
+Se ha generado el escalar sigma_e = 10
+# Preparar series una sola vez (no declarar dentro del loop)
+? series Zx = 0
+Se ha generado la serie Zx (ID 2)
+? series x = 0
+Se ha generado la serie x (ID 3)
+? series e = 0
+Se ha generado la serie e (ID 4)
+? series u = 0
+Se ha generado la serie u (ID 5)
+? series y = 0
+Se ha generado la serie y (ID 6)
+? matrix resultados = zeros(R, 2)
+Se ha generado la matriz resultados
+? loop i = 1..R
+> scalar semilla = 1000 + i
+> set seed semilla
+> > Zx = normal()
+> x = mu_x + sigma_x * ((Zx - mean(Zx)) / sd(Zx))
+> > e = normal()
+> u = sigma_e * ((e - mean(e)) / sd(e))
+> > y = alpha + beta * x + u
+> > ols y const x
+> resultados[i,] = $coeff'
+> endloop
+Generador de números pseudoaleatorios iniciado con semilla 1001
+
+Modelo 1: MCO, usando las observaciones 1-100
+Variable dependiente: y
+
+             coeficiente   Desv. típica   Estadístico t    valor p 
+  -----------------------------------------------------------------
+  const        2.54894      1.65191           1.543       0.1260   
+  x            2.12255      0.0661958        32.06        9.26e-054 ***
+
+Media de la vble. dep.  45.00000   D.T. de la vble. dep.   33.32113
+Suma de cuad. residuos  9565.445   D.T. de la regresión    9.879604
+R-cuadrado              0.912978   R-cuadrado corregido    0.912090
+F(1, 98)                1028.148   Valor p (de F)          9.26e-54
+Log-verosimilitud      −369.9310   Criterio de Akaike      743.8619
+Criterio de Schwarz     749.0723   Crit. de Hannan-Quinn   745.9706
+rho                    −0.058146   Durbin-Watson           2.106400
+
+Generador de números pseudoaleatorios iniciado con semilla 1002
+
+Modelo 2: MCO, usando las observaciones 1-100
+Variable dependiente: y
+
+             coeficiente   Desv. típica   Estadístico t    valor p 
+  -----------------------------------------------------------------
+  const        3.42637      1.66881           2.053       0.0427    **
+  x            2.07868      0.0668728        31.08        1.48e-052 ***
+
+Media de la vble. dep.  45.00000   D.T. de la vble. dep.   32.72328
+Suma de cuad. residuos  9762.101   D.T. de la regresión    9.980645
+R-cuadrado              0.907914   R-cuadrado corregido    0.906974
+F(1, 98)                966.2207   Valor p (de F)          1.48e-52
+Log-verosimilitud      −370.9485   Criterio de Akaike      745.8970
+Criterio de Schwarz     751.1073   Crit. de Hannan-Quinn   748.0057
+rho                     0.033141   Durbin-Watson           1.930939
+
+Generador de números pseudoaleatorios iniciado con semilla 1003
+
+Modelo 3: MCO, usando las observaciones 1-100
+Variable dependiente: y
+
+             coeficiente   Desv. típica   Estadístico t    valor p 
+  -----------------------------------------------------------------
+  const        5.94241      1.67635           3.545       0.0006    ***
+  x            1.95288      0.0671751        29.07        5.55e-050 ***
+
+Media de la vble. dep.  45.00000   D.T. de la vble. dep.   30.94498
+Suma de cuad. residuos  9850.542   D.T. de la regresión    10.02575
+R-cuadrado              0.896093   R-cuadrado corregido    0.895033
+F(1, 98)                845.1516   Valor p (de F)          5.55e-50
+Log-verosimilitud      −371.3994   Criterio de Akaike      746.7989
+Criterio de Schwarz     752.0092   Crit. de Hannan-Quinn   748.9076
+rho                    −0.030677   Durbin-Watson           2.056614
+
+Generador de números pseudoaleatorios iniciado con semilla 1004
+
+Modelo 4: MCO, usando las observaciones 1-100
+Variable dependiente: y
+
+             coeficiente   Desv. típica   Estadístico t    valor p 
+  -----------------------------------------------------------------
+  const        5.46268      1.67954           3.252       0.0016    ***
+  x            1.97687      0.0673029        29.37        2.24e-050 ***
+
+Media de la vble. dep.  45.00000   D.T. de la vble. dep.   31.29184
+Suma de cuad. residuos  9888.079   D.T. de la regresión    10.04484
+R-cuadrado              0.897997   R-cuadrado corregido    0.896956
+F(1, 98)                862.7527   Valor p (de F)          2.24e-50
+Log-verosimilitud      −371.5896   Criterio de Akaike      747.1792
+Criterio de Schwarz     752.3895   Crit. de Hannan-Quinn   749.2879
+rho                    −0.036059   Durbin-Watson           2.065687
+
+Generador de números pseudoaleatorios iniciado con semilla 1005
+
+Modelo 5: MCO, usando las observaciones 1-100
+Variable dependiente: y
+
+             coeficiente   Desv. típica   Estadístico t    valor p 
+  -----------------------------------------------------------------
+  const        6.09191      1.67491           3.637       0.0004    ***
+  x            1.94540      0.0671173        28.99        7.21e-050 ***
+
+Media de la vble. dep.  45.00000   D.T. de la vble. dep.   30.83609
+Suma de cuad. residuos  9833.606   D.T. de la regresión    10.01713
+R-cuadrado              0.895538   R-cuadrado corregido    0.894472
+F(1, 98)                840.1385   Valor p (de F)          7.21e-50
+Log-verosimilitud      −371.3134   Criterio de Akaike      746.6268
+Criterio de Schwarz     751.8371   Crit. de Hannan-Quinn   748.7355
+rho                    −0.006323   Durbin-Watson           1.999451
+
+Generador de números pseudoaleatorios iniciado con semilla 1006
+
+Modelo 6: MCO, usando las observaciones 1-100
+Variable dependiente: y
+
+             coeficiente   Desv. típica   Estadístico t    valor p 
+  -----------------------------------------------------------------
+  const        7.24644      1.65653           4.374       3.04e-05  ***
+  x            1.88768      0.0663808        28.44        3.84e-049 ***
+
+Media de la vble. dep.  45.00000   D.T. de la vble. dep.   29.98183
+Suma de cuad. residuos  9618.973   D.T. de la regresión    9.907209
+R-cuadrado              0.891912   R-cuadrado corregido    0.890809
+F(1, 98)                808.6691   Valor p (de F)          3.84e-49
+Log-verosimilitud      −370.2100   Criterio de Akaike      744.4200
+Criterio de Schwarz     749.6303   Crit. de Hannan-Quinn   746.5287
+rho                    −0.116717   Durbin-Watson           2.198651
+
+Generador de números pseudoaleatorios iniciado con semilla 1007
+
+Modelo 7: MCO, usando las observaciones 1-100
+Variable dependiente: y
+
+             coeficiente   Desv. típica   Estadístico t    valor p 
+  -----------------------------------------------------------------
+  const        4.22137      1.67769           2.516       0.0135    **
+  x            2.03893      0.0672286        30.33        1.32e-051 ***
+
+Media de la vble. dep.  45.00000   D.T. de la vble. dep.   32.17201
+Suma de cuad. residuos  9866.239   D.T. de la regresión    10.03374
+R-cuadrado              0.903715   R-cuadrado corregido    0.902732
+F(1, 98)                919.8084   Valor p (de F)          1.32e-51
+Log-verosimilitud      −371.4790   Criterio de Akaike      746.9581
+Criterio de Schwarz     752.1684   Crit. de Hannan-Quinn   749.0668
+rho                    −0.054056   Durbin-Watson           2.082836
+
+Generador de números pseudoaleatorios iniciado con semilla 1008
+
+Modelo 8: MCO, usando las observaciones 1-100
+Variable dependiente: y
+
+             coeficiente   Desv. típica   Estadístico t    valor p 
+  -----------------------------------------------------------------
+  const        5.09951      1.68051           3.035       0.0031    ***
+  x            1.99502      0.0673416        29.63        1.05e-050 ***
+
+Media de la vble. dep.  45.00000   D.T. de la vble. dep.   31.55189
+Suma de cuad. residuos  9899.449   D.T. de la regresión    10.05061
+R-cuadrado              0.899556   R-cuadrado corregido    0.898531
+F(1, 98)                877.6658   Valor p (de F)          1.05e-50
+Log-verosimilitud      −371.6471   Criterio de Akaike      747.2941
+Criterio de Schwarz     752.5045   Crit. de Hannan-Quinn   749.4028
+rho                    −0.015914   Durbin-Watson           2.007512
+
+Generador de números pseudoaleatorios iniciado con semilla 1009
+
+Modelo 9: MCO, usando las observaciones 1-100
+Variable dependiente: y
+
+             coeficiente   Desv. típica   Estadístico t    valor p 
+  -----------------------------------------------------------------
+  const        4.86160      1.68046           2.893       0.0047    ***
+  x            2.00692      0.0673399        29.80        6.21e-051 ***
+
+Media de la vble. dep.  45.00000   D.T. de la vble. dep.   31.72110
+Suma de cuad. residuos  9898.933   D.T. de la regresión    10.05035
+R-cuadrado              0.900630   R-cuadrado corregido    0.899616
+F(1, 98)                888.2097   Valor p (de F)          6.21e-51
+Log-verosimilitud      −371.6445   Criterio de Akaike      747.2889
+Criterio de Schwarz     752.4993   Crit. de Hannan-Quinn   749.3976
+rho                    −0.010863   Durbin-Watson           1.967986
+
+Generador de números pseudoaleatorios iniciado con semilla 1010
+
+Modelo 10: MCO, usando las observaciones 1-100
+Variable dependiente: y
+
+             coeficiente   Desv. típica   Estadístico t    valor p 
+  -----------------------------------------------------------------
+  const        3.61082      1.67141           2.160       0.0332    **
+  x            2.06946      0.0669770        30.90        2.53e-052 ***
+
+Media de la vble. dep.  45.00000   D.T. de la vble. dep.   32.59621
+Suma de cuad. residuos  9792.533   D.T. de la regresión    9.996190
+R-cuadrado              0.906905   R-cuadrado corregido    0.905955
+F(1, 98)                954.6900   Valor p (de F)          2.53e-52
+Log-verosimilitud      −371.1041   Criterio de Akaike      746.2082
+Criterio de Schwarz     751.4186   Crit. de Hannan-Quinn   748.3170
+rho                     0.008697   Durbin-Watson           1.980993
+
+? matrix media = meanc(resultados)
+Se ha generado la matriz media
+? matrix sesgo = media - {alpha, beta}
+Se ha generado la matriz sesgo
+? matrix desvio = sdc(resultados)
+Se ha generado la matriz desvio
+? print resultados media sesgo desvio
+resultados (10 x 2)
+
+      2.5489       2.1226 
+      3.4264       2.0787 
+      5.9424       1.9529 
+      5.4627       1.9769 
+      6.0919       1.9454 
+      7.2464       1.8877 
+      4.2214       2.0389 
+      5.0995       1.9950 
+      4.8616       2.0069 
+      3.6108       2.0695 
+
+media (1 x 2)
+
+      4.8512       2.0074 
+
+sesgo (1 x 2)
+
+    -0.14879    0.0074397 
+
+desvio (1 x 2)
+
+      1.3479     0.067396 
+
