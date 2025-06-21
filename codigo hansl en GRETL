@@ -1,0 +1,47 @@
+# =========================================================
+#      Simulación Monte Carlo (10 repeticiones controladas)
+#      Modelo: y = α + β·x + u  con generación exacta
+# =========================================================
+
+nulldata 100
+setobs 1 1 --time-series
+
+# Parámetros poblacionales
+scalar R = 10
+scalar N = 100
+scalar mu_x = 20
+scalar sigma_x = 15
+scalar alpha = 5
+scalar beta  = 2
+scalar sigma_e = 10
+
+# Preparar series una sola vez (no declarar dentro del loop)
+series Zx = 0
+series x = 0
+series e = 0
+series u = 0
+series y = 0
+
+matrix resultados = zeros(R, 2)
+
+loop i = 1..R
+    scalar semilla = 1000 + i
+    set seed semilla
+
+    Zx = normal()
+    x = mu_x + sigma_x * ((Zx - mean(Zx)) / sd(Zx))
+
+    e = normal()
+    u = sigma_e * ((e - mean(e)) / sd(e))
+
+    y = alpha + beta * x + u
+
+    ols y const x
+    resultados[i,] = $coeff'
+endloop
+
+matrix media = meanc(resultados)
+matrix sesgo = media - {alpha, beta}
+matrix desvio = sdc(resultados)
+
+print resultados media sesgo desvio
