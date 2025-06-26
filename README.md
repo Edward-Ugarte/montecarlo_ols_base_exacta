@@ -1,1 +1,1 @@
-# montecarlo_ols_base_exacta
+# montecarlo-ols-base_exacta
