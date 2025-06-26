@@ -1,1 +1,1 @@
-# Edward Ugarte                     # -montecarlo_ols_base_exacta
+# montecarlo_ols_base_exacta
