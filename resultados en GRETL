@@ -5,7 +5,7 @@ Sesión actual: 2025-06-21 00:01
 #      Simulación Monte Carlo (10 repeticiones controladas)
 #      Modelo: y = α + β·x + u  con generación exacta
 # =========================================================
-? nulldata 100
+
 periodicidad: 1, máx. obs: 100
 rango de observaciones: 1 a 100
 ? setobs 1 1 --time-series
@@ -37,18 +37,18 @@ Se ha generado la serie e (ID 4)
 Se ha generado la serie u (ID 5)
 ? series y = 0
 Se ha generado la serie y (ID 6)
-? matrix resultados = zeros(R, 2)
+? matrix resultados =
 Se ha generado la matriz resultados
 ? loop i = 1..R
-> scalar semilla = 1000 + i
+> scalar semilla = 
 > set seed semilla
 > > Zx = normal()
-> x = mu_x + sigma_x * ((Zx - mean(Zx)) / sd(Zx))
-> > e = normal()
-> u = sigma_e * ((e - mean(e)) / sd(e))
+> x = 
+> > e = 
+> u = 
 > > y = alpha + beta * x + u
 > > ols y const x
-> resultados[i,] = $coeff'
+> resultados
 > endloop
 Generador de números pseudoaleatorios iniciado con semilla 1001
 
